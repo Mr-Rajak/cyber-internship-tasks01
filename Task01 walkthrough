@@ -1,0 +1,70 @@
+==========================================================
+                 TASK 01 - WALKTHROUGH
+        Local Network Port & Service Discovery
+==========================================================
+
+1. INTRODUCTION
+----------------------------------------------------------
+Think of a local network like a neighborhood. Each house (host/computer) may have doors and windows (ports). Some of these doors may be open and can allow entry (services running). 
+The goal of this task was to walk around the "neighborhood" and see which houses had open doors and what was inside.
+
+2. TOOLS USED
+----------------------------------------------------------
+- Nmap : Like a flashlight that checks which doors are open on each house.
+- (Wireshark optional but not used here)
+
+3. STEPS TAKEN
+----------------------------------------------------------
+Step 1: Scanned the whole neighborhood (network) to see which houses were present.
+
+Step 2: Checked each house to see which doors (ports) were open.
+
+Step 3: Looked closer to identify what kind of room or service was behind each door (e.g. Database, File Sharing, DNS).
+
+Step 4: Wrote down which houses were safe and which had risky open doors.
+
+4. WHAT WAS FOUND
+----------------------------------------------------------
+House 1: 
+- One door open (DNS service).
+- Not too risky if updated, but still needs checking.
+
+House 2:
+- Multiple important doors open (SMB, RPC, MySQL Database).
+- This is dangerous because strangers could misuse them.
+- Highest risk house.
+
+House 3:
+- All doors shut (no entry possible).
+- Safe.
+
+House 4:
+- All doors shut (no entry possible).
+- Safe.
+
+5. RISKS
+----------------------------------------------------------
+- The second house (Windows computer) had too many important doors open. This could let attackers steal data or control the system.
+- The first house (Linux server running DNS) was not too bad, but if outdated, it could still cause issues.
+- Other houses were safe.
+
+6. FIXES (REMEDIATION)
+----------------------------------------------------------
+- Close unnecessary doors (restrict services like SMB, RPC).
+- Update the systems to latest patches.
+- Lock down the database so only trusted people can enter.
+- Improve fences (firewalls) and install cameras (monitoring).
+- Keep everything updated regularly.
+
+7. CONCLUSION
+----------------------------------------------------------
+This task was like a safety inspection in a digital neighborhood. Out of four houses:
+- One house had serious problems (critical risk).
+- One house had some possible problems (medium risk).
+- Two houses were safe.
+
+Immediate repairs were suggested for the risky houses to keep the neighborhood secure.
+
+==========================================================
+                  END OF WALKTHROUGH
+==========================================================
