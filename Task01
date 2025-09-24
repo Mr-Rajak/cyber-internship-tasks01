@@ -1,0 +1,93 @@
+==========================================================
+README - Task 01 : Local Network Port & Service Discovery
+==========================================================
+
+Prepared by : Aman Rajak
+Date        : 22 September 2025
+Version     : 1.0
+Confidentiality : Internal Use Only
+
+----------------------------------------------------------
+1. INTRODUCTION
+----------------------------------------------------------
+This project covers basic network reconnaissance using Nmap.
+Objective: Discover open ports and running services on hosts
+inside a controlled lab network.
+
+----------------------------------------------------------
+2. TOOLS USED
+----------------------------------------------------------
+- nmap (7.95) : TCP SYN scan, Service & Version detection
+- Wireshark   : Optional, not used in this task
+
+----------------------------------------------------------
+3. METHODOLOGY
+----------------------------------------------------------
+1. Run TCP SYN scan across /24 network
+2. Identify responsive hosts and open ports
+3. Perform service/version detection (-sV)
+4. Analyze severity and risks
+5. Save raw outputs as evidence
+
+----------------------------------------------------------
+4. COMMANDS EXECUTED
+----------------------------------------------------------
+Initial Scan:
+    nmap -sS 192.168.XXX.XXX/24
+
+Targeted Service Detection:
+    nmap -sV -p 53,135,445,3306 192.168.XXX.XXX
+
+Suggested Follow-up:
+    nmap -A -p 1-65535 <target>
+    nmap --script vuln -p 53,135,445,3306 <target>
+
+----------------------------------------------------------
+5. FINDINGS SUMMARY
+----------------------------------------------------------
+Host 1 (192.168.XXX.XXX)
+- Open: 53/tcp (dnsmasq 2.51)
+- Severity: Medium
+
+Host 2 (192.168.XXX.XXX)
+- Open: 135/tcp (MSRPC), 445/tcp (SMB), 3306/tcp (MySQL 8.0.35)
+- Severity: High
+
+Host 3 (192.168.XXX.XXX)
+- No open ports (all filtered)
+- Severity: Low
+
+Host 4 (192.168.XXX.XXX)
+- No open ports (all closed)
+- Severity: Low
+
+----------------------------------------------------------
+6. RISK PRIORITIZATION
+----------------------------------------------------------
+High   : SMB, RPC, MySQL exposure on Windows host
+Medium : dnsmasq outdated version/config risks
+Low    : No TCP exposure
+
+----------------------------------------------------------
+7. REMEDIATION ACTIONS
+----------------------------------------------------------
+- Patch Windows, disable SMBv1, restrict RPC/SMB to admins
+- Restrict or bind MySQL (3306) to localhost only
+- Upgrade and secure dnsmasq config
+- Apply segmentation & monitoring for SMB/DNS traffic
+- Enable logging and IDS rules
+
+----------------------------------------------------------
+8. CONCLUSION
+----------------------------------------------------------
+All objectives achieved:
+- Hosts identified
+- Open ports and services detected
+- Initial risk analysis completed
+Main issue: Windows host exposing SMB/MSRPC/MySQL (critical).
+Other hosts show minimal risk.
+Remediation steps provided for securing the environment.
+
+==========================================================
+END OF README
+==========================================================
